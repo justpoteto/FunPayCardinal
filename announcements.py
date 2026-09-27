@@ -55,22 +55,7 @@ def get_announcement(ignore_last_tag: bool = False) -> dict | None:
 
     :return: словарь с данными объявления.
     """
-    global LAST_TAG
-    headers = {
-        'X-GitHub-Api-Version': '2022-11-28',
-        'accept': 'application/vnd.github+json'
-    }
-    try:
-        response = requests.get("https://api.github.com/gists/cfd2177869feab9e64ab62918f708389", headers=headers)
-        if not response.status_code == 200:
-            return None
-
-        content = json.loads(response.json().get("files").get("fpc.json").get("content"))
-        if content.get("tag") == LAST_TAG and not ignore_last_tag:
-            return None
-        return content
-    except:
-        return None
+    return None
 
 
 def download_photo(url: str) -> bytes | None:
